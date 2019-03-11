@@ -1,5 +1,5 @@
 {
-  "repository": "https://github.com/oligsei/ll",
+  "repository": "https://github.com/LavrL/backend",
   "image": "heroku/nodejs",
   "addons": [
     "heroku-postgresql"
