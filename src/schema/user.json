@@ -1,0 +1,24 @@
+{
+  "$id": "user.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "allOf": [
+    {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "$ref": "base-user.json#/definitions/name"
+        },
+        "username": {
+          "$ref": "base-user.json#/definitions/username"
+        },
+        "password": {
+          "type": "string",
+          "minLength": 5
+        }
+      }
+    }
+  ]
+}

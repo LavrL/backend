@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- 10
+env:
+  global:
+    - NODE_ENV=test
+script:
+- npm run test:lint
+  # create db only if lint is ok
+- psql -c 'CREATE DATABASE test;' -U test
+- npm run test:migrate
+- npm run migrate
+- npm run seed
+- npm run test

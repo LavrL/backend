@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": [
+    "src"
+  ],
+  "execMap": {
+    "js": "node --require dotenv/config --inspect"
+  }
+}

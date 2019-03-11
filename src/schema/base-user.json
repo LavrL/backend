@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "definitions": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "username": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 255
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/name"
+    },
+    {
+      "$ref": "#/definitions/username"
+    }
+  ]
+}

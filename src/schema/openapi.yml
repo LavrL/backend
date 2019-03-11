@@ -1,0 +1,127 @@
+openapi: 3.0.2
+info:
+  title: LL Service API
+  version: 1.0.0
+  license:
+    name: MIT
+servers:
+  - description: ''
+    url: '/v1'
+security:
+  - basicAuth: []
+paths:
+  /:
+    get:
+      security: []
+      responses:
+        200:
+          description: ''
+          content: {}
+  /authenticate:
+    post:
+      responses:
+        204:
+          description: ''
+          content: {}
+  /register:
+    put:
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+  /properties:
+    get:
+      responses:
+        200:
+          description: List of user's properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
+  /properties/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      responses:
+        200:
+          description: Property information by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyResponse'
+components:
+  parameters:
+    id:
+      name: "id"
+      in: "path"
+      required: true
+      schema:
+        type: number
+  schemas:
+    PropertyResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+      properties:
+        content:
+          $ref: '#/components/schemas/User'
+    Property:
+      allOf:
+        - properties:
+            id:
+              type: integer
+            address:
+              type: string
+        - $ref: '#/components/schemas/Timestamp'
+    User:
+      allOf:
+        - properties:
+            id:
+              type: integer
+            name:
+              type: string
+              minLength: 1
+              maxLength: 255
+            username:
+              type: string
+              minLength: 1
+              maxLength: 255
+        - $ref: '#/components/schemas/Timestamp'
+    Timestamp:
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Response:
+      properties:
+        status:
+          type: string
+    Error:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            code:
+              type: integer
+              format: int32
+            message:
+              type: string
+            stack:
+              type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
