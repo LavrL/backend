@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/oligsei/ll",
+  "image": "heroku/nodejs",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
