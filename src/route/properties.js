@@ -1,4 +1,5 @@
 const Router = require('koa-router')
+const body = require('koa-body')
 const { PropertyModel } = require('../model/property.model')
 
 const router = new Router({ prefix: '/properties' })
