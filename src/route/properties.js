@@ -44,11 +44,11 @@ router.get('/:propertyId', async (ctx) => {
 // })
 // ----------
 router.post('/', body(), async (ctx) => {
-    const { id, address } = ctx.request.body
+    const { id, address, user_id } = ctx.request.body
 
     try {
         const properties = await PropertyModel.query()
-            .insert({ id, address })
+            .insert({ id, address, user_id })
 
         ctx.status = 201
         ctx.body = {
