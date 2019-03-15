@@ -38,8 +38,36 @@ router.get('/:propertyId', async (ctx) => {
   }
 })
 
-router.post('/:propertyId', async (ctx) => {
-  ctx.throw(501)
+//router.post('/:propertyId', async (ctx) => {
+//  ctx.throw(501)
+//})
+//------
+router.post('/', body(), async (ctx) => {
+    const { id, address, user_id } = ctx.request.body
+
+    try {
+        const user = await PropertyModel
+            .query()
+            .insert({ id, address, user_id })
+
+        ctx.status = 201
+        ctx.body = {
+            status: 'success',
+            content: properties
+        }
+    } catch (e) {
+        console.log(e)
+        if (e instanceof ValidationError) {
+            console.log(e)
+            ctx.status = 400
+            ctx.body = {
+                status: 'error',
+                content: []
+            }
+        }
+        throw e
+    }
 })
+//------
 
 module.exports.properties = router
