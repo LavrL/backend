@@ -1,8 +1,14 @@
 const Router = require('koa-router')
 const body = require('koa-body')
+const { ValidationError } = require('objection')
+const { auth } = require('../middleware/auth')
 const { PropertyModel } = require('../model/property.model')
 
 const router = new Router({ prefix: '/properties' })
+
+router.post('/authenticate', auth(), async (ctx) => {
+  ctx.status = 204
+})
 
 router.get('/', async (ctx) => {
   const { user } = ctx.state
