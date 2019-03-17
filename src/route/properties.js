@@ -72,10 +72,10 @@ router.post('/', body(), async (ctx) => {
 // ----------
 router.delete('/:address', async (ctx) => {
     const { user } = ctx.state
-    const { address } = ctx.params
+    const { address1 } = ctx.params
 
     const property = await PropertyModel.query()
-        .delete().where( { user.address : address } )
+        .delete().where( { address : address1 } )
 
     if (property === undefined) {
         return ctx.throw(404)
