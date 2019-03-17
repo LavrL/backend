@@ -75,7 +75,7 @@ router.delete('/:address', async (ctx) => {
     const { address1 } = ctx.params
 
     const property = await PropertyModel.query()
-        .delete().where( { address : address1 } )
+        .delete().where( { user_id: user.id, address : address1 } )
 
     if (property === undefined) {
         return ctx.throw(404)
