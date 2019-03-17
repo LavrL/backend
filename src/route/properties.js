@@ -70,6 +70,7 @@ router.post('/', body(), async (ctx) => {
     }
 })
 // ----------
+
 router.delete('/:address', async (ctx) => {
     const { user } = ctx.state
     const { address } = ctx.params
