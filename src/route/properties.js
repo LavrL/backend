@@ -70,5 +70,21 @@ router.post('/', body(), async (ctx) => {
     }
 })
 // ----------
+router.delete('/', async (ctx) => {
+    const { user } = ctx.state
+    const { address } = ctx.params
 
+    const property = await PropertyModel.query()
+        .delete({ address })
+
+    if (property === undefined) {
+        return ctx.throw(404)
+    }
+
+    ctx.body = {
+        status: 'success',
+        content: property
+    }
+})
+// ----------
 module.exports.properties = router
