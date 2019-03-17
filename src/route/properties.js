@@ -70,12 +70,12 @@ router.post('/', body(), async (ctx) => {
     }
 })
 // ----------
-router.delete('/:propertyId', async (ctx) => {
+router.delete('/:address', async (ctx) => {
     const { user } = ctx.state
-    const { propertyId } = ctx.params
+    const { address } = ctx.params
 
     const property = await PropertyModel.query()
-        .delete().where({ user_id: user.id, id : propertyId })
+        .delete().where({ user_id: user.id, address : address })
 
     if (property === undefined) {
         return ctx.throw(404)
