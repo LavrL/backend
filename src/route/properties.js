@@ -81,6 +81,7 @@ router.delete('/:address', async (ctx) => {
     }
 })
 // ----------
+
 router.put('/:address', body(), async (ctx) => {
     const { user } = ctx.state
     const { address } = ctx.params
@@ -99,4 +100,5 @@ router.put('/:address', body(), async (ctx) => {
     }
 })
 // ----------
+
 module.exports.properties = router
