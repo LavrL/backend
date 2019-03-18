@@ -89,10 +89,11 @@ router.delete('/:address', async (ctx) => {
 })
 // ----------
 router.put('/:address', body(), async (ctx) => {
+    const { address, user_id } = ctx.request.body
     // const { user_id } = ctx.request.body
-    const { user } = ctx.state
+    //const { user } = ctx.state
     const { oldAddress } = ctx.params
-    const { address } = ctx.request.body
+    //const { address } = ctx.request.body
 
     const property = await PropertyModel.query()
         .insert({ address }).where({ address: oldAddress })
