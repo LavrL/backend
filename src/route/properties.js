@@ -94,7 +94,7 @@ router.put('/:address', body(), async (ctx) => {
     const { oldAddress, user_id } = ctx.request.body
 
     const property = await PropertyModel.query()
-        .update({ address }).where({ address: oldAddress })
+        .update({ address }).where({ user_id: user.id, address: oldAddress })
 
     if (property === undefined) {
         return ctx.throw(404)
