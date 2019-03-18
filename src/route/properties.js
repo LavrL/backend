@@ -18,10 +18,6 @@ router.get('/', async (ctx) => {
   }
 })
 
-// router.put('/', async (ctx) => {
-//  ctx.throw(501)
-// })
-
 router.get('/:propertyId', async (ctx) => {
   const { user } = ctx.state
   const { propertyId } = ctx.params
@@ -40,9 +36,6 @@ router.get('/:propertyId', async (ctx) => {
   }
 })
 
-// router.post('/:propertyId', async (ctx) => {
-//  ctx.throw(501)
-// })
 // ----------
 router.post('/', body(), async (ctx) => {
     const { address, user_id } = ctx.request.body
@@ -88,4 +81,24 @@ router.delete('/:address', async (ctx) => {
     }
 })
 // ----------
+
+router.put('/:address', body(), async (ctx) => {
+    const { user } = ctx.state
+    const { address } = ctx.params
+    const { oldAddress, user_id } = ctx.request.body
+
+    const property = await PropertyModel.query()
+        .update({ address }).where({ user_id: user.id, address: oldAddress })
+
+    if (property === undefined) {
+        return ctx.throw(404)
+    }
+
+    ctx.body = {
+        status: 'success',
+        content: property
+    }
+})
+// ----------
+
 module.exports.properties = router
