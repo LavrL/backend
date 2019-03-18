@@ -88,7 +88,7 @@ router.delete('/:address', async (ctx) => {
     }
 })
 // ----------
-router.put('/:address', async (ctx) => {
+router.put('/:address', body(), async (ctx) => {
     const { user } = ctx.state
     const { oldAddress } = ctx.params
     const { address } = ctx.request.body
