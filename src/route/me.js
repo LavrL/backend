@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const body = require('koa-body')
 const { auth } = require('../middleware/auth')
 const { properties } = require('./properties')
+const { CreateUserModel } = require('../model/create-user.model')
 
 const router = new Router({ prefix: '/me' })
 
