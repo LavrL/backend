@@ -19,7 +19,7 @@ router.get('/', async (ctx) => {
 })
 
 router.put('/', body(), async (ctx) => {
-    const { user } = ctx.state
+    const { username } = ctx.state
     const { password, user_id } = ctx.request.body
 
     const user = await CreateUserModel.query()
@@ -31,7 +31,7 @@ router.put('/', body(), async (ctx) => {
 
     ctx.body = {
         status: 'success',
-        content: user
+        content: username
     }
 })
 
