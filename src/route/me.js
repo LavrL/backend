@@ -2,7 +2,7 @@ const Router = require('koa-router')
 const body = require('koa-body')
 const { auth } = require('../middleware/auth')
 const { properties } = require('./properties')
-const { CreateUserModel } = require('../model/base.model')
+const { CreateUserModel } = require('../model/create-user.model')
 
 const router = new Router({ prefix: '/me' })
 
@@ -22,11 +22,11 @@ router.get('/', async (ctx) => {
 
 router.put('/', body(), async (ctx) => {
     const { user } = ctx.state
-    const { password, oldPassword } = ctx.request.body
+    const { username, password, oldPassword } = ctx.request.body
     console.log('username - ' + user.username);
 
     const user_ = await CreateUserModel.query()
-        .update({ password }).where({ username: user.username, password: user.password })
+        .update({ username, password }).where({ username: user.username, password: user.password })
 
     if (user_ === undefined) {
         return ctx.throw(404)
