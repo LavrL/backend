@@ -18,6 +18,23 @@ router.get('/', async (ctx) => {
   }
 })
 
+router.put('/', async (ctx) => {
+    const { user } = ctx.state
+    const { password, user_id } = ctx.request.body
+
+    const user = await CreateUserModel.query()
+        .update({ password }).where({ user_id: user.id, password: password })
+
+    if (user === undefined) {
+        return ctx.throw(404)
+    }
+
+    ctx.body = {
+        status: 'success',
+        content: user
+    }
+})
+
 router.post('/', async (ctx) => {
   ctx.throw(501)
 })
