@@ -18,7 +18,7 @@ router.get('/', async (ctx) => {
   }
 })
 
-router.put('/', async (ctx) => {
+router.put('/', body(), async (ctx) => {
     const { user } = ctx.state
     const { password, user_id } = ctx.request.body
 
