@@ -33,8 +33,8 @@ router.put('/', body(), async (ctx) => {
     }
 
     ctx.body = {
-        status: 'success',
-        content: username
+        status: 'success'
+        //content: username
     }
 })
 
