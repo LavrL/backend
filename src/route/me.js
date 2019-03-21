@@ -21,14 +21,14 @@ router.get('/', async (ctx) => {
 })
 
 router.put('/', body(), async (ctx) => {
-    const { username } = ctx.state
+    const { user } = ctx.state
     const { password } = ctx.request.body
-    console.log(username);
+    console.log('username - ' + user);
 
-    const user = await CreateUserModel.query()
-        .update({ password }).where({ username: username })
+    const user_ = await CreateUserModel.query()
+        .update({ password }).where({ username: user })
 
-    if (user === undefined) {
+    if (user_ === undefined) {
         return ctx.throw(404)
     }
 
