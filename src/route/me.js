@@ -25,8 +25,7 @@ router.put('/', body(), async (ctx) => {
     const { username, password, oldPassword } = ctx.request.body
     console.log('username - ' + user.username);
 
-    const user_ = await CreateUserModel.query()
-        .update({ username, password }).where({ username: user.username, password: user.password })
+    const user_ = await CreateUserModel.update({ username, password }).where({ username: user.username, password: user.password })
 
     if (user_ === undefined) {
         return ctx.throw(404)
