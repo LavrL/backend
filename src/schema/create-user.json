@@ -24,11 +24,11 @@
         "password": [
           "passwordConfirmation"
         ]
-      },
-      "required": [
-        "username",
-        "password"
-      ]
+      }
+    //  "required": [
+    //    "username",
+    //    "password"
+    //  ]
     }
   ]
 }
