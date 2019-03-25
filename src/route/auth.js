@@ -17,7 +17,7 @@ router.put('/:pass', body(), async (ctx) => {
     console.log('user.id = '+ user)
 
     const property = await CreateUserModel.query()
-        .update({ pass }).where({ user_id: user.id, password: oldPass })
+        .update({ pass }).where({ password: oldPass })
 
     if (property === undefined) {
         return ctx.throw(404)
