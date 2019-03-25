@@ -25,10 +25,7 @@
           "passwordConfirmation"
         ]
       }
-    //  "required": [
-    //    "username",
-    //    "password"
-    //  ]
+    
     }
   ]
 }
