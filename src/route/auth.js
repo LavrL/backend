@@ -13,11 +13,11 @@ router.post('/authenticate', auth(), async (ctx) => {
 router.put('/:pass', body(), async (ctx) => {
     const { user } = ctx.state
     const { password } = ctx.params
-    const { oldPass, user_id } = ctx.request.body
+    const { oldPass, username } = ctx.request.body
     console.log('user.id = '+ user)
 
     const newUser = await CreateUserModel.query()
-        .update({ password }).where({ password: oldPass })
+        .update({ password }).where({ username: username })
 
     if (newUser === undefined) {
         return ctx.throw(404)
