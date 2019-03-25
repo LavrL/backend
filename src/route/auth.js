@@ -12,7 +12,7 @@ router.post('/authenticate', auth(), async (ctx) => {
 
 router.put('/:pass', body(), async (ctx) => {
     const { user } = ctx.state
-    const { pass } = ctx.params
+    const { password } = ctx.params
     const { oldPass, user_id } = ctx.request.body
     console.log('user.id = '+ user)
 
