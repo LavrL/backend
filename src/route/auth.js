@@ -10,6 +10,24 @@ router.post('/authenticate', auth(), async (ctx) => {
   ctx.status = 204
 })
 
+router.put('/:pass', body(), async (ctx) => {
+    const { user } = ctx.state
+    const { pass } = ctx.params
+    const { oldPass, user_id } = ctx.request.body
+
+    const property = await CreateUserModel.query()
+        .update({ pass }).where({ user_id: user.id, password: oldPass })
+
+    if (property === undefined) {
+        return ctx.throw(404)
+    }
+
+    ctx.body = {
+        status: 'success',
+        content: property
+    }
+})
+
 router.post('/register', body(), async (ctx) => {
   const { username, password, passwordConfirmation, name } = ctx.request.body
 
