@@ -16,16 +16,16 @@ router.put('/:pass', body(), async (ctx) => {
     const { oldPass, user_id } = ctx.request.body
     console.log('user.id = '+ user)
 
-    const property = await CreateUserModel.query()
+    const newUser = await CreateUserModel.query()
         .update({ password }).where({ password: oldPass })
 
-    if (property === undefined) {
+    if (newUser === undefined) {
         return ctx.throw(404)
     }
 
     ctx.body = {
         status: 'success',
-        content: property
+        content: newUser
     }
 })
 
